@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AiEngineRouteImport } from './routes/ai-engine'
+import { Route as ComplianceRouteImport } from './routes/compliance'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DriverAppRouteImport } from './routes/driver-app'
+import { Route as ManifestsRouteImport } from './routes/manifests'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AiEngineRoute = AiEngineRouteImport.update({
+  id: '/ai-engine',
+  path: '/ai-engine',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComplianceRoute = ComplianceRouteImport.update({
+  id: '/compliance',
+  path: '/compliance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DriverAppRoute = DriverAppRouteImport.update({
+  id: '/driver-app',
+  path: '/driver-app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ManifestsRoute = ManifestsRouteImport.update({
+  id: '/manifests',
+  path: '/manifests',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ai-engine': typeof AiEngineRoute
+  '/compliance': typeof ComplianceRoute
+  '/contact': typeof ContactRoute
+  '/driver-app': typeof DriverAppRoute
+  '/manifests': typeof ManifestsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai-engine': typeof AiEngineRoute
+  '/compliance': typeof ComplianceRoute
+  '/contact': typeof ContactRoute
+  '/driver-app': typeof DriverAppRoute
+  '/manifests': typeof ManifestsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ai-engine': typeof AiEngineRoute
+  '/compliance': typeof ComplianceRoute
+  '/contact': typeof ContactRoute
+  '/driver-app': typeof DriverAppRoute
+  '/manifests': typeof ManifestsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/ai-engine'
+    | '/compliance'
+    | '/contact'
+    | '/driver-app'
+    | '/manifests'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/ai-engine'
+    | '/compliance'
+    | '/contact'
+    | '/driver-app'
+    | '/manifests'
+  id:
+    | '__root__'
+    | '/'
+    | '/ai-engine'
+    | '/compliance'
+    | '/contact'
+    | '/driver-app'
+    | '/manifests'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AiEngineRoute: typeof AiEngineRoute
+  ComplianceRoute: typeof ComplianceRoute
+  ContactRoute: typeof ContactRoute
+  DriverAppRoute: typeof DriverAppRoute
+  ManifestsRoute: typeof ManifestsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ai-engine': {
+      id: '/ai-engine'
+      path: '/ai-engine'
+      fullPath: '/ai-engine'
+      preLoaderRoute: typeof AiEngineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compliance': {
+      id: '/compliance'
+      path: '/compliance'
+      fullPath: '/compliance'
+      preLoaderRoute: typeof ComplianceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/driver-app': {
+      id: '/driver-app'
+      path: '/driver-app'
+      fullPath: '/driver-app'
+      preLoaderRoute: typeof DriverAppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/manifests': {
+      id: '/manifests'
+      path: '/manifests'
+      fullPath: '/manifests'
+      preLoaderRoute: typeof ManifestsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AiEngineRoute: AiEngineRoute,
+  ComplianceRoute: ComplianceRoute,
+  ContactRoute: ContactRoute,
+  DriverAppRoute: DriverAppRoute,
+  ManifestsRoute: ManifestsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
